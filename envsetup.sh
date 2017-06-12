@@ -28,6 +28,7 @@ export HMM_DESCRIPTIVE=(
 "repopick: Utility to fetch changes from Gerrit."
 "installboot: Installs a boot.img to the connected device."
 "installrecovery: Installs a recovery.img to the connected device."
+"clog:   Generate the changelog, vendor/validus/tools/Changelog_Validus.txt"
 )
 
 function hmm() {
@@ -2039,3 +2040,25 @@ addcompletions
 export ANDROID_BUILD_TOP=$(gettop)
 
 . $ANDROID_BUILD_TOP/vendor/validus/build/envsetup.sh
+
+function clog()
+{
+    txtrst=$(tput sgr0)             #  Reset
+    bldgrn=${txtbld}$(tput setaf 2) #  green
+
+    clog_cmd=vendor/validus/tools/changelog_validus
+    echo ""
+    echo ${bldgrn}"Executing $clog_cmd"${txtrst}
+
+    export Changelog=Changelog_Validus.txt
+
+    eval "$clog_cmd"
+    sed -i 's/project/   */g' $Changelog
+
+    cp $Changelog vendor/validus/
+    rm $Changelog
+
+    echo ${bldgrn}"Changelog generated at vendor/validus/$Changelog"${txtrst}
+
+    return;
+}
