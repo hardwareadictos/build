@@ -1638,7 +1638,7 @@ function reposync() {
 
 function repopick() {
     T=$(gettop)
-    $T/build/tools/repopick.py $@
+    $T/vendor/validus/build/tools/repopick.py $@
 }
 
 function fixup_common_out_dir() {
