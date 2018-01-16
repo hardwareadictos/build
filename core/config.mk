@@ -188,7 +188,7 @@ FIND_LEAVES_EXCLUDES := $(addprefix --prune=, $(SCAN_EXCLUDE_DIRS) .repo .git)
 $(call project-set-path-variant,recovery,RECOVERY_VARIANT,bootable/recovery)
 
 -include vendor/extra/BoardConfigExtra.mk
--include vendor/validus/config/BoardConfigValidus.mk
+-include vendor/validus/config/BoardConfigVALIDUS.mk
 
 # The build system exposes several variables for where to find the kernel
 # headers:
